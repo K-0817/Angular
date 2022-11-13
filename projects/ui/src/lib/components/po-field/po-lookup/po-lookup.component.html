@@ -1,0 +1,87 @@
+<po-field-container
+  [p-disabled]="disabled"
+  [p-help]="help"
+  [p-id]="id"
+  [p-label]="label"
+  [p-optional]="optional"
+  [p-required]="required"
+  [p-show-required]="showRequired"
+>
+  <div class="po-field-container-content" *ngIf="!disclaimers.length; else disclaimersTemplate">
+    <input
+      #inp
+      class="po-input"
+      [id]="id"
+      type="text"
+      [ngClass]="clean && inp.value ? 'po-input-double-icon-right' : 'po-input-icon-right'"
+      [autocomplete]="autocomplete"
+      [disabled]="disabled"
+      [placeholder]="disabled ? '' : placeholder"
+      [required]="required"
+      (blur)="searchEvent()"
+    />
+
+    <div class="po-field-icon-container-right">
+      <po-clean
+        class="po-icon-input"
+        *ngIf="clean && !disabled"
+        [p-element-ref]="inputEl"
+        (p-change-event)="cleanModel()"
+      >
+      </po-clean>
+
+      <span
+        #iconLookup
+        class="po-icon po-field-icon po-icon-search po-icon-input"
+        tabindex="-1"
+        [class.po-field-icon]="!disabled"
+        [class.po-field-icon-disabled]="disabled"
+        (click)="openLookup()"
+        (focus)="inp.focus()"
+      >
+      </span>
+    </div>
+  </div>
+  <po-field-container-bottom></po-field-container-bottom>
+</po-field-container>
+
+<ng-template #disclaimersTemplate>
+  <div class="po-field-container-content">
+    <div
+      #inp
+      [tabindex]="disabled ? -1 : 0"
+      class="po-input po-input-icon-right po-lookup-input po-icon-input"
+      [class.po-lookup-input-auto]="autoHeight"
+      [class.po-lookup-input-static]="!autoHeight"
+      [class.po-lookup-input-disabled]="disabled"
+    >
+      <span *ngIf="placeholder && !disclaimers?.length" class="po-lookup-input-placeholder">
+        {{ placeholder }}
+      </span>
+
+      <po-disclaimer
+        *ngFor="let disclaimer of visibleDisclaimers"
+        class="po-lookup-input-disclaimer"
+        [p-label]="disclaimer.label"
+        [p-value]="disclaimer.value"
+        [p-hide-close]="disclaimer.value === '' || disabled"
+        [class.po-clickable]="disclaimer.value === '' && !disabled"
+        (p-close-action)="closeDisclaimer(disclaimer.value)"
+      >
+      </po-disclaimer>
+    </div>
+
+    <div class="po-field-icon-container-right">
+      <span
+        #iconLookup
+        class="po-icon po-field-icon po-icon-search po-icon-input"
+        tabindex="-1"
+        [class.po-field-icon]="!disabled"
+        [class.po-field-icon-disabled]="disabled"
+        (click)="openLookup()"
+        (focus)="inp.focus()"
+      >
+      </span>
+    </div>
+  </div>
+</ng-template>

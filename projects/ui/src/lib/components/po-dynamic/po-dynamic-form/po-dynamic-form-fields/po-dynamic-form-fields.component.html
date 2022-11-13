@@ -1,0 +1,358 @@
+<div class="po-row" *ngIf="visibleFields && visibleFields.length > 0">
+  <ng-container *ngFor="let field of visibleFields; trackBy: trackBy">
+    <po-divider *ngIf="field?.divider?.trim()" class="po-sm-12" [p-label]="field.divider"> </po-divider>
+
+    <po-datepicker
+      #component
+      *ngIf="compareTo(field.control, 'datepicker')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-clean]="field.clean"
+      [p-disabled]="isDisabled(field)"
+      [p-error-pattern]="field.errorMessage"
+      [p-auto-focus]="field.focus"
+      [p-format]="field.format"
+      [p-help]="field.help"
+      [p-iso-format]="field.isoFormat"
+      [p-label]="field.label"
+      [p-locale]="field.locale"
+      [p-max-date]="field.maxValue"
+      [p-min-date]="field.minValue"
+      [p-no-autocomplete]="field.noAutocomplete"
+      [p-optional]="field.optional"
+      [p-readonly]="field.readonly"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+      [p-placeholder]="field.placeholder"
+    >
+    </po-datepicker>
+
+    <po-datepicker-range
+      #component
+      *ngIf="compareTo(field.control, 'datepickerrange')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-clean]="field.clean"
+      [p-disabled]="isDisabled(field)"
+      [p-auto-focus]="field.focus"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-literals]="field.literals"
+      [p-max-date]="field.maxValue"
+      [p-min-date]="field.minValue"
+      [p-no-autocomplete]="field.noAutocomplete"
+      [p-optional]="field.optional"
+      [p-readonly]="field.readonly"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+    >
+    </po-datepicker-range>
+
+    <po-input
+      #component
+      *ngIf="compareTo(field.control, 'input')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-clean]="field.clean"
+      [p-disabled]="isDisabled(field)"
+      [p-error-pattern]="field.errorMessage"
+      [p-auto-focus]="field.focus"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-mask-format-model]="field.maskFormatModel"
+      [p-mask]="field.mask"
+      [p-maxlength]="field.maxLength"
+      [p-minlength]="field.minLength"
+      [p-no-autocomplete]="field.noAutocomplete"
+      [p-optional]="field.optional"
+      [p-pattern]="field.pattern"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+      (p-change-model)="onChangeFieldModel(field)"
+      [p-icon]="field.icon"
+      [p-placeholder]="field.placeholder"
+      [p-readonly]="field.readonly"
+    >
+    </po-input>
+
+    <po-number
+      #component
+      *ngIf="compareTo(field.control, 'number')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-clean]="field.clean"
+      [p-disabled]="isDisabled(field)"
+      [p-error-pattern]="field.errorMessage"
+      [p-auto-focus]="field.focus"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-min]="field.minValue"
+      [p-max]="field.maxValue"
+      [p-maxlength]="field.maxLength"
+      [p-minlength]="field.minLength"
+      [p-no-autocomplete]="field.noAutocomplete"
+      [p-optional]="field.optional"
+      [p-step]="field.step"
+      [p-readonly]="field.readonly"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+      (p-change-model)="onChangeFieldModel(field)"
+      [p-icon]="field.icon"
+      [p-placeholder]="field.placeholder"
+    >
+    </po-number>
+
+    <po-decimal
+      #component
+      *ngIf="compareTo(field.control, 'decimal')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-clean]="field.clean"
+      [p-error-pattern]="field.errorMessage"
+      [p-disabled]="isDisabled(field)"
+      [p-decimals-length]="field.decimalsLength"
+      [p-thousand-maxlength]="field.thousandMaxlength"
+      [p-icon]="field.icon"
+      [p-auto-focus]="field.focus"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-locale]="field.locale"
+      [p-min]="field.minValue"
+      [p-max]="field.maxValue"
+      [p-maxlength]="field.maxLength"
+      [p-minlength]="field.minLength"
+      [p-no-autocomplete]="field.noAutocomplete"
+      [p-optional]="field.optional"
+      [p-readonly]="field.readonly"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+      (p-change-model)="onChangeFieldModel(field)"
+      [p-placeholder]="field.placeholder"
+    >
+    </po-decimal>
+
+    <po-select
+      #component
+      *ngIf="compareTo(field.control, 'select')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-field-label]="field.fieldLabel"
+      [p-field-value]="field.fieldValue"
+      [p-disabled]="isDisabled(field)"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-optional]="field.optional"
+      [p-options]="field.options"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+      [p-placeholder]="field.placeholder"
+      [p-readonly]="field.readonly"
+    >
+    </po-select>
+
+    <po-radio-group
+      #component
+      *ngIf="compareTo(field.control, 'radioGroup')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-columns]="field.columns || 3"
+      [p-auto-focus]="field.focus"
+      [p-disabled]="isDisabled(field)"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-optional]="field.optional"
+      [p-options]="field.options"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+    >
+    </po-radio-group>
+
+    <po-switch
+      #component
+      *ngIf="compareTo(field.control, 'switch')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-disabled]="isDisabled(field)"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-label-off]="field.booleanFalse"
+      [p-label-on]="field.booleanTrue"
+      [p-label-position]="field.labelPosition"
+      (p-change)="onChangeField(field)"
+    >
+    </po-switch>
+
+    <po-combo
+      #component
+      *ngIf="compareTo(field.control, 'combo')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      p-emit-object-value
+      [p-auto-focus]="field.focus"
+      [p-clean]="field.clean"
+      [p-disabled]="isDisabled(field)"
+      [p-field-label]="field.fieldLabel"
+      [p-field-value]="field.fieldValue"
+      [p-filter-params]="field.params"
+      [p-filter-service]="field.optionsService"
+      [p-help]="field.help"
+      [p-infinite-scroll]="field.infiniteScroll"
+      [p-infinite-scroll-distance]="field.infiniteScrollDistance || 100"
+      [p-label]="field.label"
+      [p-literals]="field.literals"
+      [p-options]="field.options"
+      [p-optional]="field.optional"
+      [p-sort]="field.sort"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field, $event)"
+      [p-icon]="field.icon"
+      [p-placeholder]="field.placeholder"
+      [p-filter-minlength]="field.filterMinlength"
+      [p-filter-mode]="field.filterMode"
+      [p-disabled-init-filter]="field.disabledInitFilter"
+      [p-disabled-tab-filter]="field.disabledTabFilter"
+      [p-debounce-time]="field.debounceTime"
+      [p-change-on-enter]="field.changeOnEnter"
+    >
+    </po-combo>
+
+    <po-lookup
+      #component
+      *ngIf="compareTo(field.control, 'lookup')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      p-field-label="label"
+      p-field-value="value"
+      [ngClass]="field.componentClass"
+      [p-clean]="field.clean"
+      [p-columns]="field.columns"
+      [p-disabled]="isDisabled(field)"
+      [p-field-label]="field.fieldLabel || 'label'"
+      [p-field-value]="field.fieldValue || 'value'"
+      [p-filter-params]="field.params"
+      [p-filter-service]="field.searchService"
+      [p-auto-focus]="field.focus"
+      [p-auto-height]="field.autoHeight"
+      [p-help]="field.help"
+      [p-field-format]="field.format"
+      [p-infinite-scroll]="field.infiniteScroll"
+      [p-label]="field.label"
+      [p-literals]="field.literals"
+      [p-multiple]="field.multiple"
+      [p-no-autocomplete]="field.noAutocomplete"
+      [p-optional]="field.optional"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+      [p-placeholder]="field.placeholder"
+      [p-advanced-filters]="field.advancedFilters"
+      (p-change-visible-columns)="field.changeVisibleColumns($event)"
+      (p-restore-column-manager)="field.columnRestoreManager($event)"
+    >
+    </po-lookup>
+
+    <po-checkbox-group
+      #component
+      *ngIf="compareTo(field.control, 'checkboxGroup')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-columns]="field.columns || 3"
+      [p-auto-focus]="field.focus"
+      [p-disabled]="isDisabled(field)"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-optional]="field.optional"
+      [p-options]="field.options"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+    >
+    </po-checkbox-group>
+
+    <po-multiselect
+      #component
+      *ngIf="compareTo(field.control, 'multiselect')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-disabled]="isDisabled(field)"
+      [p-auto-focus]="field.focus"
+      [p-auto-height]="field.autoHeight"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-literals]="field.literals"
+      [p-optional]="field.optional"
+      [p-options]="field.options"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+      [p-placeholder]="field.placeholder"
+      [p-field-label]="field.fieldLabel"
+      [p-field-value]="field.fieldValue"
+      [p-filter-service]="field.optionsService"
+      [p-filter-mode]="field.filterMode"
+      [p-debounce-time]="field.debounceTime"
+      [p-sort]="field.sort"
+      [p-placeholder-search]="field.placeholderSearch"
+      [p-hide-search]="field.hideSearch"
+      [p-hide-select-all]="field.hideSelectAll"
+    >
+    </po-multiselect>
+
+    <po-textarea
+      #component
+      *ngIf="compareTo(field.control, 'textarea')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-disabled]="isDisabled(field)"
+      [p-auto-focus]="field.focus"
+      [p-help]="field.help"
+      [p-label]="field.label"
+      [p-maxlength]="field.maxLength"
+      [p-minlength]="field.minLength"
+      [p-optional]="field.optional"
+      [p-readonly]="field.readonly"
+      [p-required]="field.required"
+      [p-rows]="field.rows"
+      (p-change)="onChangeField(field)"
+      (p-change-model)="onChangeFieldModel(field)"
+      [p-placeholder]="field.placeholder"
+    >
+    </po-textarea>
+
+    <po-password
+      #component
+      *ngIf="compareTo(field.control, 'password')"
+      [name]="field.property"
+      [(ngModel)]="value[field.property]"
+      [ngClass]="field.componentClass"
+      [p-clean]="field.clean"
+      [p-disabled]="isDisabled(field)"
+      [p-error-pattern]="field.errorMessage"
+      [p-auto-focus]="field.focus"
+      [p-help]="field.help"
+      [p-hide-password-peek]="field.hidePasswordPeek"
+      [p-icon]="field.icon"
+      [p-label]="field.label"
+      [p-maxlength]="field.maxLength"
+      [p-minlength]="field.minLength"
+      [p-no-autocomplete]="field.noAutocomplete"
+      [p-optional]="field.optional"
+      [p-pattern]="field.pattern"
+      [p-readonly]="field.readonly"
+      [p-required]="field.required"
+      (p-change)="onChangeField(field)"
+      (p-change-model)="onChangeFieldModel(field)"
+      [p-placeholder]="field.placeholder"
+    >
+    </po-password>
+  </ng-container>
+</div>

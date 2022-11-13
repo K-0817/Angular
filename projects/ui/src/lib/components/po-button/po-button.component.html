@@ -1,0 +1,18 @@
+<button
+  #button
+  class="po-button"
+  type="button"
+  [attr.p-size]="size"
+  [attr.p-kind]="kind"
+  [attr.p-danger]="danger"
+  [class.po-button-sm]="small"
+  [disabled]="disabled || loading"
+  (click)="onClick()"
+>
+  <div *ngIf="loading" class="po-button-loading-icon">
+    <po-loading-icon p-neutral-color></po-loading-icon>
+  </div>
+
+  <po-icon *ngIf="icon" class="po-button-icon" [p-icon]="icon"></po-icon>
+  <span *ngIf="label" class="po-button-label">{{ label }}</span>
+</button>

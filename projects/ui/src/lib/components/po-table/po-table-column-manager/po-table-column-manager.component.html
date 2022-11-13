@@ -1,0 +1,35 @@
+<po-popover #popover *ngIf="target" [p-target]="target" p-position="bottom-left" (p-close)="checkChanges([], true)">
+  <div class="po-table-column-manager-header">
+    <div class="po-table-column-manager-header-title">{{ literals.columnsManager }}</div>
+
+    <div class="po-table-column-manager-header-close">
+      <button
+        class="po-table-column-manager-header-close-button po-clickable po-icon po-icon-close"
+        (click)="popover.close()"
+      ></button>
+    </div>
+  </div>
+
+  <div class="po-table-column-manager-body">
+    <po-table-list-manager
+      name="visibleColumns"
+      [(ngModel)]="visibleColumns"
+      p-columns="1"
+      [p-options]="columnsOptions"
+      (p-change)="checkChanges($event, false)"
+      (p-change-position)="changePosition($event)"
+      [p-columns-manager]="columns"
+    >
+    </po-table-list-manager>
+  </div>
+
+  <div class="po-table-column-manager-footer">
+    <po-button
+      class="po-table-column-manager-footer-restore"
+      p-kind="tertiary"
+      [p-label]="literals.restoreDefault"
+      (p-click)="restore()"
+    >
+    </po-button>
+  </div>
+</po-popover>

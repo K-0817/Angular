@@ -1,0 +1,28 @@
+<div
+  class="container-po-checkbox"
+  [attr.checked]="checkboxValue"
+  (click)="checkOption(checkboxValue)"
+  (keydown)="onKeyDown($event, checkboxValue)"
+>
+  <div
+    role="checkbox"
+    class="po-checkbox-outline"
+    [attr.p-size]="size"
+    [tabindex]="disabled ? -1 : 0"
+    [attr.aria-checked]="checkboxValue"
+  >
+    <span
+      [attr.aria-checked]="checkboxValue"
+      aria-label=" "
+      [id]="id"
+      class="po-checkbox"
+      [attr.aria-disabled]="disabled"
+      [attr.required]="checkBoxRequired"
+    >
+    </span>
+
+    <label *ngIf="label" #checkboxLabel [for]="id" class="po-checkbox-label" tabindex="-1">
+      {{ label }}
+    </label>
+  </div>
+</div>

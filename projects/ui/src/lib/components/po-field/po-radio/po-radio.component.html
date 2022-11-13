@@ -1,0 +1,14 @@
+<div #radio class="po-radio">
+  <label #radioLabel (click)="eventClick()" (keydown)="onKeyDown($event)">
+    <input
+      type="radio"
+      [attr.p-size]="size"
+      [checked]="checked"
+      [disabled]="disabled"
+      [name]="name ?? 'po-input-radio'"
+      [required]="required"
+      [value]="radioValue ?? ''"
+    />
+    <span *ngIf="label">{{ label }}</span>
+  </label>
+</div>

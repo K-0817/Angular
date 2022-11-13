@@ -1,0 +1,85 @@
+<po-field-container
+  [class.po-date-picker-container-disabled]="disabled"
+  [p-disabled]="disabled"
+  [p-help]="help"
+  [p-label]="label"
+  [p-optional]="optional"
+  [p-required]="required"
+  [p-show-required]="showRequired"
+>
+  <div
+    #dateRangeField
+    class="po-datepicker-range-field po-input"
+    [class.po-datepicker-range-field-disabled]="disabled"
+    [attr.disabled]="disabled"
+  >
+    <div class="po-datepicker-range-start-date">
+      <input
+        #startDateInput
+        class="po-datepicker-range-input"
+        maxlength="10"
+        type="text"
+        [attr.aria-label]="label"
+        [autocomplete]="autocomplete"
+        [disabled]="disabled"
+        [name]="startDateInputName"
+        [readonly]="readonly"
+        (blur)="onBlur($event)"
+        (focus)="onFocus($event)"
+        (keydown)="onKeydown($event)"
+        (keyup)="onKeyup($event)"
+        (click)="eventOnClick($event)"
+      />
+    </div>
+
+    <div class="po-datepicker-range-separator">-</div>
+
+    <div class="po-datepicker-range-end-date">
+      <input
+        #endDateInput
+        class="po-datepicker-range-input"
+        maxlength="10"
+        type="text"
+        [autocomplete]="autocomplete"
+        [disabled]="disabled"
+        [name]="endDateInputName"
+        [readonly]="readonly"
+        (blur)="onBlur($event)"
+        (focus)="onFocus($event)"
+        (keydown)="onKeydown($event)"
+        (keyup)="onKeyup($event)"
+        (click)="eventOnClick($event)"
+      />
+    </div>
+
+    <div class="po-datepicker-range-icon">
+      <po-clean class="po-icon-input" *ngIf="enableCleaner" (p-change-event)="clear()"></po-clean>
+    </div>
+
+    <div class="po-datepicker-range-icon">
+      <span
+        #iconCalendar
+        class="po-icon po-field-icon po-icon-calendar {{ disabled ? 'po-icon-input-disabled' : 'po-icon-input' }}"
+        [class.po-clickable]="!disabled && !readonly"
+        [class.po-field-icon-disabled]="disabled || readonly"
+        (click)="toggleCalendar()"
+      >
+      </span>
+    </div>
+  </div>
+
+  <po-field-container-bottom [p-error-pattern]="getErrorMessage"></po-field-container-bottom>
+</po-field-container>
+
+<ng-container *ngIf="isCalendarVisible">
+  <div #calendarPicker class="po-calendar-range-picker">
+    <po-calendar
+      p-mode="range"
+      [ngModel]="dateRange"
+      [p-max-date]="maxDate"
+      [p-min-date]="minDate"
+      [p-locale]="locale"
+      (ngModelChange)="onCalendarChange($event)"
+    ></po-calendar>
+  </div>
+</ng-container>

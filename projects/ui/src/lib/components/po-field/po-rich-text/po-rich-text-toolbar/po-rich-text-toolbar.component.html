@@ -1,0 +1,50 @@
+<div class="po-rich-text-toolbar" #toolbarElement>
+  <div class="po-rich-text-toolbar-button-align" data-rich-text-toolbar="format">
+    <po-button-group p-toggle="multiple" [p-buttons]="formatButtons"> </po-button-group>
+  </div>
+
+  <div *ngIf="!isInternetExplorer" class="po-rich-text-toolbar-button-align" data-rich-text-toolbar="color">
+    <div class="po-rich-text-toolbar-color-picker-container">
+      <button
+        class="po-button po-button-default po-rich-text-toolbar-color-picker-button"
+        [disabled]="readonly"
+        [p-tooltip]="literals.textColor"
+        [attr.aria-label]="literals.textColor"
+      >
+        <input
+          #colorPickerInput
+          class="po-rich-text-toolbar-color-picker-input"
+          type="color"
+          [disabled]="readonly"
+          (change)="changeTextColor($event.target.value)"
+          [attr.aria-label]="literals.textColor"
+        />
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!disabledTextAlign" class="po-rich-text-toolbar-button-align" data-rich-text-toolbar="align">
+    <po-button-group p-toggle="single" [p-buttons]="alignButtons"> </po-button-group>
+  </div>
+
+  <div class="po-rich-text-toolbar-button-align" data-rich-text-toolbar="list">
+    <po-button-group p-toggle="single" [p-buttons]="listButtons"> </po-button-group>
+  </div>
+
+  <div class="po-rich-text-toolbar-button-align" data-rich-text-toolbar="link">
+    <po-button-group [p-buttons]="linkButtons"> </po-button-group>
+  </div>
+
+  <div class="po-rich-text-toolbar-button-align" data-rich-text-toolbar="media">
+    <po-button-group [p-buttons]="mediaButtons"> </po-button-group>
+  </div>
+</div>
+
+<po-rich-text-image-modal #richTextImageModal (p-command)="emitCommand($event)"> </po-rich-text-image-modal>
+
+<po-rich-text-link-modal
+  #richTextLinkModal
+  (p-command)="emitCommand($event)"
+  (p-link-editing)="emitLinkEditing($event)"
+>
+</po-rich-text-link-modal>

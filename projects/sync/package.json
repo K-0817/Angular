@@ -1,0 +1,39 @@
+{
+  "name": "@po-ui/ng-sync",
+  "version": "0.0.0-PLACEHOLDER",
+  "tag": "next",
+  "description": "PO UI - Sync",
+  "author": "PO UI",
+  "license": "MIT",
+  "homepage": "https://po-ui.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/po-ui/po-angular"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migrations.json",
+    "packageGroup": [
+      "@po-ui/ng-sync",
+      "@po-ui/ng-storage"
+    ]
+  },
+  "dependencies": {
+    "@awesome-cordova-plugins/core": "^5.41.0",
+    "@awesome-cordova-plugins/network": "^5.41.0",
+    "@po-ui/ng-storage": "0.0.0-PLACEHOLDER",
+    "http-status-codes": "^2.1.4",
+    "@po-ui/ng-schematics": "0.0.0-PLACEHOLDER",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/core": "^14.0.2",
+    "@awesome-cordova-plugins/core": "^5.41.0",
+    "@awesome-cordova-plugins/network": "^5.41.0",
+    "@po-ui/ng-storage": "0.0.0-PLACEHOLDER",
+    "http-status-codes": "^2.1.4",
+    "rxjs": "~7.5.5",
+    "rxjs-compat": "~6.6.0",
+    "zone.js": "~0.11.4"
+  }
+}

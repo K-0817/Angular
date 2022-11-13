@@ -1,0 +1,31 @@
+<po-field-container
+  [p-disabled]="disabled"
+  [p-help]="help"
+  [p-label]="label"
+  [p-optional]="optional"
+  [p-required]="required"
+  [p-show-required]="showRequired"
+>
+  <div role="group" [attr.aria-label]="label" class="po-field-container-content po-checkbox-group-content">
+    <ul class="po-row po-pt-2 po-pb-1">
+      <li
+        *ngFor="let option of checkboxGroupOptionsView; trackBy: trackByFn"
+        class="po-checkbox-group-item po-md-{{ mdColumns }} po-lg-{{ columns }}"
+        [class.po-checkbox-group-item-disabled]="option.disabled || disabled"
+      >
+        <po-checkbox
+          #checkboxLabel
+          [p-label]="option.label"
+          [p-disabled]="option.disabled || disabled"
+          (click)="checkOption(option)"
+          (keydown)="onKeyDown($event, option)"
+          [p-checkboxValue]="checkedOptions[option.value] === null ? 'mixed' : checkedOptions[option.value]"
+          [p-required]="required"
+        >
+        </po-checkbox>
+      </li>
+    </ul>
+  </div>
+
+  <po-field-container-bottom></po-field-container-bottom>
+</po-field-container>

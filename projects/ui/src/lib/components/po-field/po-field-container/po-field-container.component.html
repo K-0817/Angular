@@ -1,0 +1,16 @@
+<div class="po-field-container">
+  <div class="po-field-container-title">
+    <po-label
+      *ngIf="label || help"
+      [p-disabled]="disabled"
+      p-field="true"
+      [p-for]="id"
+      [p-label]="label"
+      [p-requirement]="requirement"
+    ></po-label>
+  </div>
+
+  <div class="po-field-help" *ngIf="help">{{ help }}</div>
+
+  <ng-content></ng-content>
+</div>
